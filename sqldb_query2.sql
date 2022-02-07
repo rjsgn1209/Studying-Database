@@ -13,6 +13,7 @@ drop database if exists tabledb;
 create database tabledb;
 use tabledb;
 
+drop table if exists usertbl;
 create table usertbl(
 	userid char(8) not null primary key,
     username varchar(10) not null,
@@ -40,6 +41,9 @@ create table buytbl(
     price int not null,
     amount smallint not null,
     foreign key(userid) references usertbl(userid));
+    # buytbl userid 칼럼은 usertbl의 usrid 칼럼을 참조.. => 데이터의 일치성 유지..
+    # buytbl의 userid의 값들은 userid에 존재하고 있어야..
+    
     
 insert into usertbl values('LSG', '이승기', 1987, '서울', '011', '11111111', 182, '2008-07-07');
 insert into usertbl values('LBS', '김범수', 1979, '경남', '011', '11111111', 173, '2008-07-07');
@@ -51,10 +55,12 @@ select * from usertbl;
 
 insert into buytbl values(null, 'JYP', '모니터', '전자', 200, 1);
 insert into buytbl values(null, 'KBS', '노트북', '전자', 1000, 1);
-insert into buytbl values(null, 'KBS', '운동화', null, 30, 1);
+insert into buytbl values(null, 'KBS', '운동화', '스포츠', 30, 1);
 
 show tables;
 desc usertbl;
-select * from information.schema.table_constraints where table_name='buytbl';
-alter teble buytbl drop foreign key fk_userid;
+select * from information_schema.table_constraints where table_name='buytbl';
+alter table buytbl drop foreign key fk_userid;
+   
+
 
