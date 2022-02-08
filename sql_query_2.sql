@@ -118,11 +118,6 @@ alter table buytbl drop foreign key buytbl_ibfk_1;  # 제약조건 제거
 drop table usertbl;  # error
 
 
-select * from information_schema.table_constraints where table_name = 'buytbl';   # 제약조건 확인하기
-alter table buytbl drop foreign key buytbl_ibfk_1;  # 제약조건 제거
-drop table usertbl;
-
-
 -- 1
 CREATE TABLE userTbl 
 ( userID  char(8) NOT NULL PRIMARY KEY, 
@@ -138,6 +133,7 @@ CREATE TABLE userTbl
 DESCRIBE userTBL;
 
 DROP TABLE IF EXISTS userTbl;
+
 
 -- 2
  
@@ -221,8 +217,9 @@ CREATE TABLE prodTbl
 -- Foreign Key 
 -- 두 테이블의 관계 선언, 데이터의 무결성을 보장
 -- 기준키 테이블, 외래 키 테이블
--- 외래키 테이블에 데이터를 입력 시, 기준키 테이블에 데이터가 존재해야alter
+-- 외래키 테이블에 데이터를 입력 시, 기준키 테이블에 데이터가 존재해야
 -- 기준키 테이블의 참조 열은 반드시 unique or primary key이어야
+
 
 
 DROP TABLE IF EXISTS buyTbl, userTbl;
